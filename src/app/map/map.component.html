@@ -1,0 +1,59 @@
+<!-- <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-tile>1</mat-grid-tile>
+    <mat-grid-tile>2</mat-grid-tile>
+    <mat-grid-tile>3</mat-grid-tile>
+    <mat-grid-tile>4</mat-grid-tile>
+  </mat-grid-list> -->
+<div>
+  <div class="example-container">
+      
+    <div
+      cdkDropList
+      #coluna1List="cdkDropList"
+      [cdkDropListData]="coluna1"
+      [cdkDropListConnectedTo]="[coluna2List, coluna3List, coluna4List]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of coluna1" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  
+  <div class="example-container">
+    
+    <div
+      cdkDropList
+      #coluna2List="cdkDropList"
+      [cdkDropListData]="coluna2"
+      [cdkDropListConnectedTo]="[coluna1List, coluna3List, coluna4List]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of coluna2" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  <div class="example-container">
+    
+    <div
+      cdkDropList
+      #coluna3List="cdkDropList"
+      [cdkDropListData]="coluna3"
+      [cdkDropListConnectedTo]="[coluna1List, coluna2List, coluna4List]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of coluna3" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+  <div class="example-container">
+    
+    <div
+      cdkDropList
+      #coluna4List="cdkDropList"
+      [cdkDropListData]="coluna4"
+      [cdkDropListConnectedTo]="[coluna1List, coluna2List, coluna3List]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of coluna4" cdkDrag>{{item}}</div>
+    </div>
+  </div>
+</div>
+  
+  
