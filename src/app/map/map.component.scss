@@ -2,9 +2,16 @@ mat-grid-tile {
     background: lightblue;
   }
 
-  .example-container {
+  .view {
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+    padding: 20px 0;
+  }
+
+  .colunaP {
     width: 400px;
-    max-width: 100%;
+    max-width: 20%;
     margin: 0 25px 25px 0;
     display: inline-block;
     vertical-align: top;
