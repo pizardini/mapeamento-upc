@@ -15,12 +15,16 @@ export class PeopleService {
     return this.http.get<Person[]>(this.serverUrl)
   }
 
-  postPerson() {
-
+  postPerson(person: Person): Observable<Person> {
+    return this.http.post<Person>(this.serverUrl, person)
   }
 
-  putPerson() {
+  getPersonById(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.serverUrl}/${id}`)
+  }
 
+  putPerson(id: number, person: Person): Observable<Person> {
+    return this.http.put<Person>(`${this.serverUrl}/${id}`, person)
   }
 
   patchPerson() {
