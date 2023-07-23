@@ -1,10 +1,11 @@
 import { Person } from '../../shared/models/Person.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PeopleService } from '../people.service';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-new-person',
@@ -16,7 +17,7 @@ export class NewPersonComponent implements OnInit{
   formPerson = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     ssd: new FormControl<boolean>(false, [Validators.required, Validators.min(0)]),
-    ram: new FormControl<number | undefined>(undefined),
+    ram: new FormControl<number>(0),
     net: new FormControl<boolean>(false),
   })
 
@@ -27,7 +28,11 @@ export class NewPersonComponent implements OnInit{
 
   serviceSub = new Subscription();
 
-  constructor(private route: ActivatedRoute, private service: PeopleService, private toastService: ToastrService) {}
+  constructor(
+    private route: ActivatedRoute, 
+    private service: PeopleService, 
+    private toastService: ToastrService, 
+    private router: Router) {}
 
   ngOnInit(): void {     
     this.verifyRoute();
@@ -61,8 +66,35 @@ export class NewPersonComponent implements OnInit{
   }
 
   updatePerson(): void {
-    this.serviceSub = this.service.putPerson(this.personId, this.formPerson.getRawValue())
-    .subscribe(resp => {this.toastService.success('Sucesso!', `Pessoa ${resp.name} atualizada!` )
+  }
+
+  updateCat(): void {
+    this.serviceSub = this.service
+      .putPerson(this.personId, this.formPerson.getRawValue())
+      .subscribe({
+        next: (resp) => {
+          this.redirectAndShowToast(resp.name);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.toastService.error(
+            'Erro!',
+            'Não foi possível atualizar'
+          );
+        },
+      });
+  }
+
+  redirectAndShowToast(name?: string): void {
+    let message = 'Pessoa cadastrada';
+
+    if (name) {
+      message = `Pessoa ${name} atualizada!`;
+    }
+
+    this.router.navigate(['/people/search']).then((value) => {
+      if (value) {
+        this.toastService.success('Sucesso!', message);
+      }
     });
   }
 }

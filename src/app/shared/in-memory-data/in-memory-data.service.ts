@@ -19,7 +19,23 @@ export class InMemoryDataService implements InMemoryDbService {
     return { people };
   }
 
+  // genId(people: Person[]): number {
+  //   return people.length > 0 ? Math.max(...people.map((people) => people.id)) + 1 : 11;
+  // }
+
   genId(people: Person[]): number {
-    return people.length > 0 ? Math.max(...people.map((people) => people.id)) + 1 : 11;
+    if (people.length === 0) {
+      return 11; // Retorna 11 se a lista estiver vazia
+    }
+  
+    let maxId = -Infinity; // Inicializa maxId como o menor número possível
+  
+    for (const person of people) {
+      if (typeof person.id === 'number' && person.id > maxId) {
+        maxId = person.id; // Atualiza o maxId se encontrar um ID maior válido
+      }
+    }
+  
+    return maxId + 1; // Retorna o novo ID como o maior ID encontrado mais 1
   }
 }
