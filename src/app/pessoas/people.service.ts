@@ -7,13 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PeopleService {
-  private serverUrl = 'api/people';
+  // private serverUrl = 'api/people';
+  private serverUrl = 'http://localhost:3000/people';
 
   constructor(private http: HttpClient) { }
 
-  getPeople(): Observable<Person[]> {
+  getPeople(searchValue: string): Observable<Person[]> {
     return this.http.get<Person[]>(this.serverUrl)
   }
+  
+  // getPeople(searchValue: string): Observable<Person[]> {
+  //   let httpparams = new HttpParams({fromObject: {search: searchValue}});
+  //   return this.http.get<Person[]>(this.serverUrl, { params: httpparams });
+  // }
 
   postPerson(person: Person): Observable<Person> {
     return this.http.post<Person>(this.serverUrl, person)
@@ -31,7 +37,7 @@ export class PeopleService {
 
   }
 
-  deletePerson() {
-
+  deletePerson(id: number) {
+    return this.http.delete<void>(`${this.serverUrl}/${id}`);
   }
 }

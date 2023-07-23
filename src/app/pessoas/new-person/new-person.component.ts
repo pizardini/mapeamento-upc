@@ -54,21 +54,24 @@ export class NewPersonComponent implements OnInit{
 
   fillForm(person: Person): void {
     this.formPerson.patchValue({
-      name: person.name,
-      ssd: person.ssd,
-      ram: person.ram,
-      net: person.net,
+        ...person
       });
   }
 
   createPerson(): void {
-
+    this.serviceSub = this.service
+    .postPerson(this.formPerson.getRawValue())
+    .subscribe({
+      next: (resp: Person) => {
+        this.redirectAndShowToast();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.showError();
+      }
+    });
   }
 
   updatePerson(): void {
-  }
-
-  updateCat(): void {
     this.serviceSub = this.service
       .putPerson(this.personId, this.formPerson.getRawValue())
       .subscribe({
@@ -76,12 +79,16 @@ export class NewPersonComponent implements OnInit{
           this.redirectAndShowToast(resp.name);
         },
         error: (error: HttpErrorResponse) => {
-          this.toastService.error(
-            'Erro!',
-            'Não foi possível atualizar'
-          );
+          this.showError();
         },
       });
+  }
+
+  showError(): void {
+    this.toastService.error(
+      'Erro!',
+      'Não foi possível atualizar!'
+    );
   }
 
   redirectAndShowToast(name?: string): void {
