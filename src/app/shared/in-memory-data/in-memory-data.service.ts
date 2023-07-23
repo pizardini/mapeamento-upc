@@ -6,10 +6,9 @@ import { Person } from '../models/Person.model';
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
-  constructor() {}
-
+//   constructor() {}
   createDb() {
-    const people: Person[] = [
+    let people: Person[] = [
         { id: 1, name: 'Pietro', ssd: true, ram: 4, net: true},
         { id: 2, name: 'Letícia', ssd: false, ram: 2, net: true},
         { id: 3, name: 'Brenda', ssd: true, ram: 8, net: true},

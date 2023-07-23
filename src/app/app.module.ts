@@ -12,6 +12,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SharedModule } from './shared/shared.module';
 import {MatRadioModule} from '@angular/material/radio';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './shared/in-memory-data/in-memory-data.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,10 @@ import {MatRadioModule} from '@angular/material/radio';
     DragDropModule,
     SharedModule,
     MatRadioModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+      dataEncapsulation: false,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

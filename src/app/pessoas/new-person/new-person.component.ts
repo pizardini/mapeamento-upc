@@ -10,14 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class NewPersonComponent implements OnInit{
 
-  // dataSource: Person[] = [
-  //   { id: 1, name: 'Pietro', ssd: true, ram: 4, net: true},
-  //   { id: 2, name: 'Letícia', ssd: false, ram: 2, net: true},
-  //   { id: 3, name: 'Brenda', ssd: true, ram: 8, net: true},
-  //   { id: 4, name: 'Eduardo', ssd: true, ram: 8, net: true},
-  //   { id: 5, name: 'Mariana', ssd: false, ram: 8, net: true},
-  // ];
-
   formPerson = new FormGroup({
     name: new FormControl<string>('', Validators.required),
     ssd: new FormControl<boolean | undefined>(undefined, [Validators.required, Validators.min(0)]),
@@ -37,7 +29,6 @@ export class NewPersonComponent implements OnInit{
       if (this.route.routeConfig?.path?.includes("edit")) {
         this.editMode = true;
         let personId: number = this.route.snapshot.params['id'];
-        // this.selectedPerson = this.dataSource.find((item) => item.id == personId);
         
         this.formPerson.patchValue({
 
