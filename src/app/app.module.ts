@@ -11,6 +11,7 @@ import { MapComponent } from './map/map.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { SharedModule } from './shared/shared.module';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SharedModule } from './shared/shared.module';
     MatGridListModule,
     DragDropModule,
     SharedModule,
+    MatRadioModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

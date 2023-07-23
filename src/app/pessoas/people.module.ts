@@ -9,6 +9,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
+
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import {MatInputModule} from '@angular/material/input';
     MatIconModule, 
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatRadioModule
   ]
 })
 export class PeopleModule { }

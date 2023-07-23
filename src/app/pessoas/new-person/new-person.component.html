@@ -1,20 +1,21 @@
-<h2>{{ editMode ? "Editar" : "Cadastrar" }} gato</h2>
+<h2>{{ editMode ? "Editar" : "Cadastrar" }} pessoa</h2>
 
 <form [formGroup]="formPerson" (ngSubmit)="editMode ? updatePerson() : createPerson()">
     <p>
         <mat-form-field appearance="outline">
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="name">
+          <input matInput formControlName="name" required>
           <!-- <mat-hint>Hint</mat-hint> -->
           <mat-error>Campo Obrigatório</mat-error>
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="outline">
-            <mat-label>SSD</mat-label>
-            <input matInput formControlName="ssd" type="boolean">
-            <mat-error>Campo Obrigatório</mat-error>
-          </mat-form-field>
+      <label>Armazenamento:</label>
+      <mat-radio-group formControlName="ssd" required>
+        <mat-radio-button value=true>SSD</mat-radio-button>
+        <mat-radio-button value=false>HD</mat-radio-button>
+        <!-- <mat-error *ngIf="formPerson.get('ssd').invalid && formPerson.get('ssd').touched">Campo Obrigatório</mat-error> -->
+      </mat-radio-group>
     </p>
     <p>
           <mat-form-field appearance="outline">
@@ -23,12 +24,18 @@
           </mat-form-field>
     </p>
     <p>
-          <mat-form-field appearance="outline">
+      <label>Ponto de rede:</label>
+      <mat-radio-group formControlName="net">
+        <mat-radio-button value=true>Ativado</mat-radio-button>
+        <mat-radio-button value=false>Desativado</mat-radio-button>
+      </mat-radio-group>
+      
+          <!-- <mat-form-field appearance="outline">
             <mat-label>Ponto de Rede</mat-label>
-            <input matInput formControlName="bolean">
+            <input matInput formControlName="net"> -->
             <!-- <input matInput formControlName="senha" [type]="showPassword ? 'text' : 'password'">-->
             <!-- <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>  -->
-          </mat-form-field>
+          <!-- </mat-form-field> -->
     </p>
     <button mat-flat-button color="primary" [disabled]="formPerson.invalid || formPerson.pristine" type="submit">Enviar</button>
     <button mat-stroked-button color="primary" type="reset">Limpar</button>
