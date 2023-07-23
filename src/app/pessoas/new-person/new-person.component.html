@@ -1,1 +1,36 @@
-<p>new-person works!</p>
+<h2>{{ editMode ? "Editar" : "Cadastrar" }} gato</h2>
+
+<form [formGroup]="formPerson" (ngSubmit)="editMode ? updatePerson() : createPerson()">
+    <p>
+        <mat-form-field appearance="outline">
+          <mat-label>Nome</mat-label>
+          <input matInput formControlName="name">
+          <!-- <mat-hint>Hint</mat-hint> -->
+          <mat-error>Campo Obrigatório</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>SSD</mat-label>
+            <input matInput formControlName="ssd" type="boolean">
+            <mat-error>Campo Obrigatório</mat-error>
+          </mat-form-field>
+    </p>
+    <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Memória Ram</mat-label>
+            <input matInput formControlName="ram" type="number">
+          </mat-form-field>
+    </p>
+    <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Ponto de Rede</mat-label>
+            <input matInput formControlName="bolean">
+            <!-- <input matInput formControlName="senha" [type]="showPassword ? 'text' : 'password'">-->
+            <!-- <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>  -->
+          </mat-form-field>
+    </p>
+    <button mat-flat-button color="primary" [disabled]="formPerson.invalid || formPerson.pristine" type="submit">Enviar</button>
+    <button mat-stroked-button color="primary" type="reset">Limpar</button>
+</form>
+
