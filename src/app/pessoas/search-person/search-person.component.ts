@@ -11,24 +11,24 @@ import { Person } from 'src/app/shared/models/Person.model';
 export class SearchPersonComponent {
   displayedColumns: string[] = ['id', 'name', 'ssd', 'ram', 'net', 'actions'];
 
-  dataSource: Person[] = [
-    { id: 1, name: 'Pietro', ssd: true, ram: 4, net: true},
-    { id: 2, name: 'Letícia', ssd: false, ram: 2, net: true},
-    { id: 3, name: 'Brenda', ssd: true, ram: 8, net: true},
-    { id: 4, name: 'Eduardo', ssd: true, ram: 8, net: true},
-    { id: 5, name: 'Mariana', ssd: false, ram: 8, net: true},
-  ];
+  // dataSource: Person[] = [
+  //   { id: 1, name: 'Pietro', ssd: true, ram: 4, net: true},
+  //   { id: 2, name: 'Letícia', ssd: false, ram: 2, net: true},
+  //   { id: 3, name: 'Brenda', ssd: true, ram: 8, net: true},
+  //   { id: 4, name: 'Eduardo', ssd: true, ram: 8, net: true},
+  //   { id: 5, name: 'Mariana', ssd: false, ram: 8, net: true},
+  // ];
 
-  // dataSource: Person[] = [];
+  dataSource: Person[] = [];
   
-  // constructor(private service: PersonService, private router: Router) {}
+  constructor(private service: PeopleService, private router: Router) {}
 
-  // ngOnInit(): void {
-  //   this.service.getPeople().subscribe((resp) => {
-  //     console.log(resp);
+  ngOnInit(): void {
+    this.service.getPeople().subscribe((resp) => {
+      console.log(resp);
 
-  //     this.dataSource = resp;
-  //   })
-  // }
+      this.dataSource = resp;
+    })
+  }
 
 }
