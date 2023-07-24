@@ -35,9 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
     SharedModule,
     MatRadioModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
-      dataEncapsulation: false,
-    }),
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, {
+    //   dataEncapsulation: false,
+    // }),
     ToastrModule.forRoot(),
   ],
   providers: [],
