@@ -29,6 +29,16 @@ server.use((req, res, next) => {
   }
 });
 
+server.post('/login', (req, res) => {
+  let { login, password } = req.body;
+
+  if (login === "cat@gmail.com" && password === "cat123") {
+    return res.status(200).json({ auth: true });
+  } else {
+    return res.status(401).json({ auth: false });
+  }
+});
+
 server.use(router);
 server.listen(3000, () => {
   console.log('JSON Server is running');
