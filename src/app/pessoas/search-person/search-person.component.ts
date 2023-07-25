@@ -5,6 +5,7 @@ import { Subject, Subscription, debounceTime, filter, take } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-search-person',
@@ -22,11 +23,12 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
 
   subject = new Subject<string>();
   
-  constructor(private service: PeopleService, private toastService: ToastrService) {}
+  constructor(private service: PeopleService, private toastService: ToastrService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.getPeople();
     this.setConfigSubject();
+    this.getSearchQueryParams();
   }
 
   getPeople(searchValue: string = ''): void {
@@ -56,5 +58,11 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
       this.toastService.success("Sucesso!", "Pessoa removida");
       this.getPeople(this.searchControl.value);
     })
+  }
+
+  getSearchQueryParams(): void {
+    let searchValue: string = this.route.snapshot.queryParams['search'];
+    this.searchControl.setValue(searchValue); 
+    this.getPeople(searchValue);
   }
 }

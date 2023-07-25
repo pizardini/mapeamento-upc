@@ -39,5 +39,6 @@
     </p>
     <button mat-flat-button color="primary" [disabled]="formPerson.invalid || formPerson.pristine" type="submit">Enviar</button>
     <button mat-stroked-button color="primary" type="reset">Limpar</button>
+    <button mat-flat-button color="warn" [routerLink]="['/people/search']" [queryParamsHandling]="'preserve'">Voltar</button>
 </form>
 

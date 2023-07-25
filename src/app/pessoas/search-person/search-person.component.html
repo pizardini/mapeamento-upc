@@ -45,7 +45,8 @@
             <th mat-header-cell *matHeaderCellDef> Ações </th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="primary" aria-label="home icon" 
-                [routerLink]="['/people/edit', element.id]">
+                [routerLink]="['/people/edit', element.id]"
+                [queryParams]="{search: searchControl.value}">
                     <mat-icon>edit</mat-icon>
                   </button>
                 <button mat-icon-button color="warn" aria-label="home icon"
