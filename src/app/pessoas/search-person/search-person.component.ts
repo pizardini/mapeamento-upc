@@ -38,7 +38,7 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
   setConfigSubject(): void {
     this.subject
     .pipe(debounceTime(1000),
-    filter((value) => value.length > 3 || value != '')).subscribe((searchValue: string) => {
+    filter((value) => value.length >= 3 || value == '')).subscribe((searchValue: string) => {
       this.getPeople(searchValue);
     });
   }
