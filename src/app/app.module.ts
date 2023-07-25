@@ -7,26 +7,27 @@ import { PeopleModule } from './pessoas/people.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import { MapComponent } from './map/map.component';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SharedModule } from './shared/shared.module';
 import {MatRadioModule} from '@angular/material/radio';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data/in-memory-data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { MapModule } from './map/map.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     PeopleModule,
+    MapModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
@@ -39,6 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     //   dataEncapsulation: false,
     // }),
     ToastrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

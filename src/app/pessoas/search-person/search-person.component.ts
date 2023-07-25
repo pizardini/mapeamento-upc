@@ -54,7 +54,7 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
   deletePerson(id: number): void {
     this.service.deletePerson(id).pipe(take(1)).subscribe(() => {
       this.toastService.success("Sucesso!", "Pessoa removida");
-      this.getPeople();
+      this.getPeople(this.searchControl.value);
     })
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   {
@@ -8,8 +7,13 @@ const routes: Routes = [
     loadChildren: () => import('./pessoas/people.module').then((m) => m.PeopleModule),
   },
   {
-    path: 'map', component: MapComponent
-  }
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then((m) => m.MapModule),
+  },
 ];
 
 @NgModule({
