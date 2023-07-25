@@ -22,7 +22,7 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
 
   subject = new Subject<string>();
   
-  constructor(private service: PeopleService) {}
+  constructor(private service: PeopleService, private toastService: ToastrService) {}
 
   ngOnInit(): void {
     this.getPeople();
@@ -37,13 +37,13 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
 
   setConfigSubject(): void {
     this.subject
-    .pipe(debounceTime(1000)).subscribe((searchValue: string) => {
+    .pipe(debounceTime(1000),
+    filter((value) => value.length > 3 || value != '')).subscribe((searchValue: string) => {
       this.getPeople(searchValue);
     });
   }
 
   searchPeople(searchValue: string): void {
-    console.log(searchValue);
     this.subject.next(searchValue);
   }
 
@@ -51,4 +51,10 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
     this.serviceSub.unsubscribe();
   }
 
+  deletePerson(id: number): void {
+    this.service.deletePerson(id).pipe(take(1)).subscribe(() => {
+      this.toastService.success("Sucesso!", "Pessoa removida");
+      this.getPeople();
+    })
+  }
 }
