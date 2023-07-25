@@ -13,9 +13,10 @@ import { SharedModule } from './shared/shared.module';
 import {MatRadioModule} from '@angular/material/radio';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './shared/in-memory-data/in-memory-data.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { MapModule } from './map/map.module';
+import { Interceptor } from './shared/interceptor/interceptor.service';
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import { MapModule } from './map/map.module';
     ToastrModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: Interceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

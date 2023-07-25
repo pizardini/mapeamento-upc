@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: LoginService, private toast: ToastrService) {}
+  constructor(private fb: FormBuilder, private service: LoginService, private toast: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -28,18 +30,23 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
     let {login, password} = this.loginForm.value;
-    this.service.login(login, password).subscribe(
-    {
+
+    this.service.login(login, password).pipe(take(1)).subscribe({
       next: (value) => {
         console.log(value)
-        localStorage.setItem("auth", value.auth)
+        localStorage.setItem("auth", String(value.auth));
+        // localStorage.clear // Adicionar botão de deslogar
+        this.router.navigate(['/people/search'])
       },
       error: (err: HttpErrorResponse) => {
-        this.toast.error("Erro!", "Usuário ou senha inválida")
-        this.loginForm.reset();
-        // this.loginForm.markAsUntouched();
+        if (err.status == 401) {
+          this.toast.error("Erro!", "Usuário ou senha inválida")
+          this.loginForm.reset();
+          // this.loginForm.markAsUntouched();
+        } else {
+          this.toast.error("Erro!", "Ocorreu um erro, tente novamente")
+        }
       }
     }
     )

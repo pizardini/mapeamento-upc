@@ -4,7 +4,7 @@ const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const bodyParser = require('body-parser');
 
-server.use(bodyParser.json()); // Para analisar o corpo da solicitação como JSON
+server.use(bodyParser.json());
 
 server.use(middlewares);
 
