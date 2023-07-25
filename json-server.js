@@ -2,6 +2,9 @@ const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
+const bodyParser = require('body-parser');
+
+server.use(bodyParser.json()); // Para analisar o corpo da solicitação como JSON
 
 server.use(middlewares);
 
@@ -33,8 +36,10 @@ server.post('/login', (req, res) => {
   let { login, password } = req.body;
 
   if (login === "cat@gmail.com" && password === "cat123") {
+    console.log("Login bem-sucedido:", login);
     return res.status(200).json({ auth: true });
   } else {
+    console.log("Login falhou:", login);
     return res.status(401).json({ auth: false });
   }
 });
