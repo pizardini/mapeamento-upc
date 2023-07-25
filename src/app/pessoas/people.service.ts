@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Person } from '../shared/models/Person.model';
 import { Observable } from 'rxjs';
 
@@ -12,14 +12,14 @@ export class PeopleService {
 
   constructor(private http: HttpClient) { }
 
-  getPeople(searchValue: string): Observable<Person[]> {
-    return this.http.get<Person[]>(this.serverUrl)
-  }
-  
   // getPeople(searchValue: string): Observable<Person[]> {
-  //   let httpparams = new HttpParams({fromObject: {search: searchValue}});
-  //   return this.http.get<Person[]>(this.serverUrl, { params: httpparams });
+  //   return this.http.get<Person[]>(this.serverUrl)
   // }
+  
+  getPeople(searchValue: string): Observable<Person[]> {
+    let httpparams = new HttpParams({fromObject: {search: searchValue}});
+    return this.http.get<Person[]>(this.serverUrl, { params: httpparams });
+  }
 
   postPerson(person: Person): Observable<Person> {
     return this.http.post<Person>(this.serverUrl, person)

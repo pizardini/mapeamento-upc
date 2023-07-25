@@ -4,6 +4,7 @@ import { Person } from 'src/app/shared/models/Person.model';
 import { Subject, Subscription, debounceTime, filter, take } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { subscriptionLogsToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
 @Component({
   selector: 'app-search-person',
@@ -19,13 +20,13 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
 
   searchControl = new FormControl<string>('');
 
-  subject = new Subject<String>();
+  subject = new Subject<string>();
   
   constructor(private service: PeopleService) {}
 
   ngOnInit(): void {
     this.getPeople();
-    // this.setConfigSubject();
+    this.setConfigSubject();
   }
 
   getPeople(searchValue: string = ''): void {
@@ -34,14 +35,15 @@ export class SearchPersonComponent implements OnInit, OnDestroy {
     })
   }
 
-  // setConfigSubject(): void {
-  //   this.subject
-  //   .pipe(debounceTime(1000)).subscribe((searchValue: string) => {
-  //     this.getPeople(searchValue);
-  //   });
-  // }
+  setConfigSubject(): void {
+    this.subject
+    .pipe(debounceTime(1000)).subscribe((searchValue: string) => {
+      this.getPeople(searchValue);
+    });
+  }
 
-  searchPeople(searchValue: String): void {
+  searchPeople(searchValue: string): void {
+    console.log(searchValue);
     this.subject.next(searchValue);
   }
 

@@ -2,12 +2,8 @@
 <div class="m-auto">
     <mat-form-field class="w-50">
         <mat-label>Pesquise por nome</mat-label>
-        <input
-          matInput
-          type="text"
-          [formControl]="searchControl"
-
-        />
+        <input matInput type="text" [formControl]="searchControl" 
+        (ngModelChange)="searchPeople($event)" />
         <button
           *ngIf="searchControl.value != ''"
           matSuffix
