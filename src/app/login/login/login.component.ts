@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from '../login.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private service: LoginService) {}
+  constructor(private fb: FormBuilder, private service: LoginService, private toast: ToastrService) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -28,9 +30,19 @@ export class LoginComponent implements OnInit {
   login() {
 
     let {login, password} = this.loginForm.value;
-    this.service.login(login, password).subscribe((resp) =>{
-      console.log(resp);
-    })
+    this.service.login(login, password).subscribe(
+    {
+      next: (value) => {
+        console.log(value)
+        localStorage.setItem("auth", value.auth)
+      },
+      error: (err: HttpErrorResponse) => {
+        this.toast.error("Erro!", "Usuário ou senha inválida")
+        this.loginForm.reset();
+        // this.loginForm.markAsUntouched();
+      }
+    }
+    )
 
   }
 }
