@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { PeopleService } from '../people.service';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogExitPageComponent } from 'src/app/shared/components/dialog-exit-page/dialog-exit-page.component';
 
 @Component({
   selector: 'app-new-person',
@@ -23,8 +25,8 @@ export class NewPersonComponent implements OnInit{
 
   personId!: number;
   editMode = false;
-  // showPassword = false;
   selectedPerson: Person | undefined;
+  canExit = false;
 
   serviceSub = new Subscription();
 
@@ -32,7 +34,8 @@ export class NewPersonComponent implements OnInit{
     private route: ActivatedRoute, 
     private service: PeopleService, 
     private toastService: ToastrService, 
-    private router: Router) {}
+    private router: Router,
+    private dialog: MatDialog) {}
 
   ngOnInit(): void {     
     this.verifyRoute();
@@ -64,6 +67,7 @@ export class NewPersonComponent implements OnInit{
     .subscribe({
       next: (resp: Person) => {
         this.redirectAndShowToast();
+        this.canExit = true;
       },
       error: (error: HttpErrorResponse) => {
         this.showError();
@@ -77,6 +81,7 @@ export class NewPersonComponent implements OnInit{
       .subscribe({
         next: (resp) => {
           this.redirectAndShowToast(resp.name);
+          this.canExit = true;
         },
         error: (error: HttpErrorResponse) => {
           this.showError();
@@ -101,6 +106,21 @@ export class NewPersonComponent implements OnInit{
     this.router.navigate(['/people/search']).then((value) => {
       if (value) {
         this.toastService.success('Sucesso!', message);
+      }
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogExitPageComponent);
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      console.log(result);
+
+      if (result) {
+        this.canExit = true;
+        this.router.navigate(['/'])
+      } else {
+
       }
     });
   }

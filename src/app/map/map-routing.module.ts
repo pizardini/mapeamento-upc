@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from '../shared/components/page-not-found/page-
 
 const routes: Routes = [
   { path: '', component: MapComponent },
-  // { path: '**', component: PageNotFoundComponent}
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({

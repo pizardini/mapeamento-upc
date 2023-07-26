@@ -11,16 +11,10 @@ export const PersonGuard: CanDeactivateFn<NewPersonComponent> = (
   component: NewPersonComponent 
 ) => {
 
-    if (component.formPerson.touched) {
+    if (!component.canExit) {
+      component.openDialog();
       return false;
     }
 
     return true;
-  //   if (component.canDeactivate()) {
-  //     console.log(`💂‍♀️ [Guard] - Can Deactivate Guard - allowed`);
-  //     return true;
-  //   } else {
-  //     console.log(`💂‍♀️ [Guard] - Can Deactivate Guard - not allowed`);
-  //     return false;
-  // }
 }

@@ -1,0 +1,15 @@
+<div class="p-3">
+    <h1 mat-dialog-title>Atenção!</h1>
+    <div mat-dialog-content>
+      <p>Você não enviou as informações.</p>
+      <p>Tem certeza que deseja sair? Suas alterações serão perdidas.</p>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-flat-button (click)="closeDialog(true)" color="primary">
+        Sair
+      </button>
+      <button mat-stroked-button (click)="closeDialog(false)" color="primary">
+        Voltar
+      </button>
+    </div>
+  </div>
