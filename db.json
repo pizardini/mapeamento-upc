@@ -1,10 +1,17 @@
 {
     "people": 
     [
-      { "id": 1, "name": "Pietro", "ssd": true, "ram": 4, "net": true },
-      { "id": 2, "name": "Letícia", "ssd": false, "ram": 2, "net": true },
-      { "id": 3, "name": "Brenda", "ssd": true, "ram": 8, "net": true },
-      { "id": 4, "name": "Eduardo", "ssd": true, "ram": 8, "net": true },
-      { "id": 5, "name": "Mariana", "ssd": false, "ram": 8, "net": true }
+      { "id": 1, "name": "Pietro", "ssd": true, "ram": 4, "net": true, "row": 1  },
+      { "id": 2, "name": "Letícia", "ssd": false, "ram": 2, "net": true, "row": 1  },
+      { "id": 3, "name": "Brenda", "ssd": true, "ram": 8, "net": true, "row": 1  },
+      { "id": 4, "name": "Eduardo", "ssd": true, "ram": 4, "net": true, "row": 2  },
+      { "id": 5, "name": "Mariana", "ssd": false, "ram": 8, "net": true, "row": 2 },
+      { "id": 6, "name": "Milena", "ssd": false, "ram": 4, "net": true, "row": 2 },
+      { "id": 7, "name": "Luana", "ssd": false, "ram": 4, "net": true, "row": 3 },
+      { "id": 8, "name": "Matheus", "ssd": false, "ram": 8, "net": true, "row": 3 },
+      { "id": 9, "name": "Pedro", "ssd": false, "ram": 4, "net": true, "row": 3 },
+      { "id": 10, "name": "Brendon", "ssd": false, "ram": 8, "net": true, "row": 4 },
+      { "id": 11, "name": "Gabriella", "ssd": false, "ram": 4, "net": true, "row": 4 },
+      { "id": 12, "name": "Tatiana", "ssd": false, "ram": 8, "net": true, "row": 4 }
     ]
   }  

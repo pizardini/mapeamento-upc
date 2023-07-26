@@ -11,9 +11,9 @@
           <mat-error *ngIf="loginForm.get('login').hasError('required')">
             Campo obrigatório
           </mat-error>
-          <mat-error *ngIf="loginForm.get('login').hasError('email')">
+          <!-- <mat-error *ngIf="loginForm.get('login').hasError('email')">
             E-mail inválido
-          </mat-error>
+          </mat-error> -->
         </mat-form-field>
   
         <mat-form-field>
@@ -27,7 +27,7 @@
             Campo obrigatório
           </mat-error>
           <mat-error *ngIf="loginForm.get('password').hasError('minlength')">
-            Senha curta
+            A senha deve conter no mínimo 6 caracteres.
           </mat-error>
           <mat-icon
             matSuffix

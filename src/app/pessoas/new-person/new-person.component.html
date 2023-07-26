@@ -29,13 +29,15 @@
         <mat-radio-button value=true>Ativado</mat-radio-button>
         <mat-radio-button value=false>Desativado</mat-radio-button>
       </mat-radio-group>
-      
-          <!-- <mat-form-field appearance="outline">
-            <mat-label>Ponto de Rede</mat-label>
-            <input matInput formControlName="net"> -->
-            <!-- <input matInput formControlName="senha" [type]="showPassword ? 'text' : 'password'">-->
-            <!-- <mat-icon matSuffix (click)="showPassword = !showPassword">{{showPassword ? 'visibility_off' : 'visibility'}}</mat-icon>  -->
-          <!-- </mat-form-field> -->
+    </p>
+    <p>
+      <label>Fileira:</label>
+      <mat-radio-group formControlName="row">
+        <mat-radio-button value=1>1</mat-radio-button>
+        <mat-radio-button value=2>2</mat-radio-button>
+        <mat-radio-button value=3>3</mat-radio-button>
+        <mat-radio-button value=4>4</mat-radio-button>
+      </mat-radio-group>
     </p>
     <button mat-flat-button color="primary" [disabled]="formPerson.invalid || formPerson.pristine" type="submit">Enviar</button>
     <button mat-stroked-button color="primary" type="reset">Limpar</button>

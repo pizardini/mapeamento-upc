@@ -17,7 +17,11 @@ server.get('/people', (req, res) => {
       return value.name.toLowerCase().includes(search.toLowerCase());
     });
   }
+  res.json(response);
+});
 
+server.get('/people2', (req, res) => {
+  let response = router.db.get('people').value();
   res.json(response);
 });
 
@@ -35,7 +39,7 @@ server.use((req, res, next) => {
 server.post('/login', (req, res) => {
   let { login, password } = req.body;
 
-  if (login === "cat@gmail.com" && password === "cat123") {
+  if (login === "admin" && password === "admin123") {
     console.log("Login bem-sucedido:", login);
     return res.status(200).json({ auth: true });
   } else {

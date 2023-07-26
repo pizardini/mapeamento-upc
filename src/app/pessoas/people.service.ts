@@ -9,11 +9,12 @@ import { Observable } from 'rxjs';
 export class PeopleService {
   // private serverUrl = 'api/people';
   private serverUrl = 'http://localhost:3000/people';
+  private serverUrl2 = 'http://localhost:3000/people2';
 
   constructor(private http: HttpClient) { }
 
   getPeople2(): Observable<Person[]> {
-    return this.http.get<Person[]>(this.serverUrl)
+    return this.http.get<Person[]>(this.serverUrl2)
   }
   
   getPeople(searchValue: string): Observable<Person[]> {
@@ -22,15 +23,15 @@ export class PeopleService {
   }
 
   postPerson(person: Person): Observable<Person> {
-    return this.http.post<Person>(this.serverUrl, person)
+    return this.http.post<Person>(this.serverUrl, person);
   }
 
   getPersonById(id: number): Observable<Person> {
-    return this.http.get<Person>(`${this.serverUrl}/${id}`)
+    return this.http.get<Person>(`${this.serverUrl}/${id}`);
   }
 
   putPerson(id: number, person: Person): Observable<Person> {
-    return this.http.put<Person>(`${this.serverUrl}/${id}`, person)
+    return this.http.put<Person>(`${this.serverUrl}/${id}`, person);
   }
 
   patchPerson() {
@@ -39,5 +40,10 @@ export class PeopleService {
 
   deletePerson(id: number) {
     return this.http.delete<void>(`${this.serverUrl}/${id}`);
+  }
+
+  updatePerson(person: Person): Observable<Person> {
+    // const url = `${this.serverUrl}/${person.id}`;
+    return this.http.put<Person>(`${this.serverUrl}/${person.id}`, person);
   }
 }

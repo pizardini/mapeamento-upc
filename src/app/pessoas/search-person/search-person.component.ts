@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./search-person.component.scss']
 })
 export class SearchPersonComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'name', 'ssd', 'ram', 'net', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'ssd', 'ram', 'net', 'row', 'actions'];
 
   dataSource: Person[] = [];
 

@@ -15,7 +15,7 @@
       [cdkDropListConnectedTo]="[coluna2List, coluna3List, coluna4List]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of coluna1" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of coluna1" cdkDrag>{{item.name}}</div>
     </div>
   </div>
   
@@ -28,7 +28,7 @@
       [cdkDropListConnectedTo]="[coluna1List, coluna3List, coluna4List]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of coluna2" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of coluna2" cdkDrag>{{item.name}}</div>
     </div>
   </div>
   <div class="colunaP">
@@ -40,7 +40,7 @@
       [cdkDropListConnectedTo]="[coluna1List, coluna2List, coluna4List]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of coluna3" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of coluna3" cdkDrag>{{item.name}}</div>
     </div>
   </div>
   <div class="colunaP">
@@ -52,7 +52,7 @@
       [cdkDropListConnectedTo]="[coluna1List, coluna2List, coluna3List]"
       class="example-list"
       (cdkDropListDropped)="drop($event)">
-      <div class="example-box" *ngFor="let item of coluna4" cdkDrag>{{item}}</div>
+      <div class="example-box" *ngFor="let item of coluna4" cdkDrag>{{item.name}}</div>
     </div>
   </div>
 </div>  

@@ -21,6 +21,7 @@ export class NewPersonComponent implements OnInit{
     ssd: new FormControl<boolean>(false, [Validators.required, Validators.min(0)]),
     ram: new FormControl<number>(0),
     net: new FormControl<boolean>(false),
+    row: new FormControl<number>(0, Validators.min(1))
   })
 
   personId!: number;
