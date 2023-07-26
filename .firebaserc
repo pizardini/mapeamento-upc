@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "mapeamento-upc": {
+      "hosting": {
+        "mapeamento-upc": [
+          "mapeamento-upc"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mapeamento-upc"
+  }
+}
