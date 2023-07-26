@@ -1,13 +1,15 @@
 # MapeamentoUpc
-node json-server.js
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
 
-You can access via [Github Pages](https://pizardini.github.io/mapeamento-upc/).
+You can access via [Github Pages](https://pizardini.github.io/mapeamento-upc/), but without the API data. This issue will be solve with a firebase implementation.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+
+## Json server
+
+Run `node json-server.js` for the api simulated server called json-server. The API is acessible via browser at `http://localhost:3000\people`. The API is updated live.
 
 ## Code scaffolding
 
