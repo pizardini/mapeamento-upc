@@ -27,12 +27,17 @@ export class MapComponent implements OnInit{
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      const draggedPerson: Person = event.previousContainer.data[event.previousIndex];
+      const targetContainerId: number = Number(event.container.id.split("-").pop());
+      draggedPerson.row = targetContainerId + 1;
       transferArrayItem(
+        
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex,
       );
+      this.updatePersonRow(draggedPerson);
     }
   }
 
@@ -75,7 +80,7 @@ export class MapComponent implements OnInit{
     return sortedColumns;
   }
 
-  putPersonupdatePersonRow(person: Person): void {
+  updatePersonRow(person: Person): void {
     this.serviceSub = this.service.updatePerson(person).subscribe(
       () => {
         console.log(`Updated row for person ${person.id}`);
