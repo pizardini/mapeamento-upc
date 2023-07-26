@@ -1,7 +1,7 @@
 # MapeamentoUpc
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.1.
 
-You can access via [Github Pages](https://pizardini.github.io/mapeamento-upc/). But without the API data, this issue will be solve with a firebase implementation.
+You can access via [Github Pages](https://pizardini.github.io/mapeamento-upc/), but without the API data. This issue will be solve with a firebase implementation.
 
 ## Development server
 
