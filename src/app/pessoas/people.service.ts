@@ -12,9 +12,9 @@ export class PeopleService {
 
   constructor(private http: HttpClient) { }
 
-  // getPeople(searchValue: string): Observable<Person[]> {
-  //   return this.http.get<Person[]>(this.serverUrl)
-  // }
+  getPeople2(): Observable<Person[]> {
+    return this.http.get<Person[]>(this.serverUrl)
+  }
   
   getPeople(searchValue: string): Observable<Person[]> {
     let httpparams = new HttpParams({fromObject: {search: searchValue}});

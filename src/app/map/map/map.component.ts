@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import {  CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angular/cdk/drag-drop';
+import { Subscription } from 'rxjs';
+import { PeopleService } from 'src/app/pessoas/people.service';
+import { Person } from 'src/app/shared/models/Person.model';
 
 @Component({
   selector: 'app-map',
@@ -7,6 +10,13 @@ import {  CdkDragDrop, moveItemInArray, transferArrayItem,} from '@angular/cdk/d
   styleUrls: ['./map.component.scss'],
 })
 export class MapComponent {
+
+  constructor(private service: PeopleService) {}
+
+  serviceSub = new Subscription();
+
+  dataSource: Person[] = [];
+
   coluna1 = ['Letícia S.', 'Aline', 'Lorena', 'Vinícius', 'Priscila', 'Letícia B.', 'Pedro', 'Milena', 'Luana', 'Vazio'];
 
   coluna2 = ['Bruna', 'Izabela', 'Fernanda', 'Ana Paula', 'Vazio', 'Vazio', 'Amanda', 'Daiane', 'Brenda', 'Pietro'];
@@ -26,5 +36,11 @@ export class MapComponent {
         event.currentIndex,
       );
     }
+  }
+
+  ngOnInit(): void {
+    this.serviceSub = this.service.getPeople2().subscribe((resp) => {
+      this.dataSource = resp;
+    });
   }
 }
