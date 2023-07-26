@@ -27,10 +27,10 @@ export class PeopleService {
     return this.http.post<Person>(this.serverUrl, person);
   }
 
-  postPersonFire(person: Person): Promise<void> {
-    // Use the `add()` method of AngularFirestore to create a new document with auto-generated ID
-    return this.firestore.collection('people').add(person);
-  }
+  // postPersonFire(person: Person): Promise<void> {
+  //   // Use the `add()` method of AngularFirestore to create a new document with auto-generated ID
+  //   return this.firestore.collection('people').add(person);
+  // }
 
   getPersonById(id: number): Observable<Person> {
     return this.http.get<Person>(`${this.serverUrl}/${id}`);
